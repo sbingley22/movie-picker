@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, picker } = req.body;
   const sql = 'INSERT INTO reviews (title, content, picker) VALUES (?, ?, ?)';
 
   db.run(sql, [title, content, picker], function (err) {
