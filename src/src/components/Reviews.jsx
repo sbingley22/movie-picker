@@ -50,15 +50,19 @@ const Reviews = () => {
         />
         <button type="submit">Add</button>
       </form>
-      <ul>
-        {reviews.map((review) => (
-          <li key={review.id} style={{borderTop: "2px solid black", padding: 0,}}>
-            <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
-            <p >{review.picker? review.picker : "???"} Picked It</p>
-            <p>{review.content}</p>
-          </li>
-        ))}
-      </ul>
+
+      <div style={{ width: '500px', height: '500px', overflowY: 'scroll', border: '1px solid black', marginTop: '20px' }}>
+        <ul style={{ display: 'grid', gap: '10px', padding: 0 }}>
+          {reviews.map((review) => (
+            <li key={review.id} style={{borderTop: "2px solid black", padding: '10px'}}>
+              <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
+              <p>{review.picker ? review.picker : "???"} Picked It</p>
+              <p>{review.content}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
     </div>
   );
 };

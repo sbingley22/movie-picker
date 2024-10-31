@@ -16,9 +16,12 @@ var app = express()
 
 //app.use(cors())
 app.use(cors({
-  origin: 'https://sbingley22.github.io', // Allow your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
-  credentials: true // Allow credentials if needed
+  origin: [
+    'https://sbingley22.github.io',
+    /http:\/\/localhost:\d+$/ // Allow any localhost port
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
 
 // view engine setup

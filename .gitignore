@@ -14,6 +14,7 @@ node_modules
 
 backend/node_modules
 backend/database.sqlite
+backend/data/*
 src/node_modules
 
 # Editor directories and files
