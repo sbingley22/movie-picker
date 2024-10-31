@@ -13,7 +13,8 @@ var reviewsRouter = require('./routes/reviews');
 
 var app = express()
 
-app.use(cors())
+//app.use(cors())
+app.use(cors({ origin: 'https://sbingley22.github.io/movie-picker/' }))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
