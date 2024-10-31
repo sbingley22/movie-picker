@@ -14,7 +14,12 @@ var reviewsRouter = require('./routes/reviews');
 var app = express()
 
 //app.use(cors())
-app.use(cors({ origin: 'https://sbingley22.github.io' }))
+//app.use(cors({ origin: 'https://sbingley22.github.io' }))
+app.use(cors({
+  origin: 'https://sbingley22.github.io', // Allow your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
+  credentials: true // Allow credentials if needed
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
