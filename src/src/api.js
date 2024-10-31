@@ -12,3 +12,9 @@ export const addReview = async (title, content, picker) => {
   const response = await axios.post(API_URL, { title, content, picker });
   return response.data;
 };
+
+// Delete a review by ID
+export const deleteReview = async (id) => {
+  const response = await axios.delete(`${API_URL}/${id}`);
+  return response.data; // Optionally return the response if needed
+};
