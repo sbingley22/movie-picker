@@ -3,7 +3,14 @@ const path = require('path');
 
 // Create a new database file if it doesn't exist
 //const dbPath = path.join(__dirname, 'database.sqlite');
-const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'data', 'database.sqlite');
+const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'data', 'database.sqlite')
+
+// Ensure the data directory exists
+const dir = path.dirname(dbPath);
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true }); // Create the directory if it doesn't exist
+}
+
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database ' + err.message);
