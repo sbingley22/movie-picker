@@ -25,4 +25,20 @@ router.post('/', (req, res) => {
   });
 });
 
+// DELETE route to remove a review
+router.delete('/:id', (req, res) => {
+  const sql = 'DELETE FROM reviews WHERE id = ?';
+  const { id } = req.params; // Get the review ID from the request parameters
+
+  db.run(sql, [id], function (err) {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (this.changes === 0) {
+      return res.status(404).json({ error: 'Review not found' }); // Handle case where no rows were deleted
+    }
+    res.status(204).send(); // Send a No Content status response
+  });
+});
+
 module.exports = router;

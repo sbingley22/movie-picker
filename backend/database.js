@@ -5,7 +5,7 @@ const fs = require('fs');
 // Create a new database file if it doesn't exist
 //const dbPath = path.join(__dirname, 'database.sqlite');
 //const dbPath = process.env.DATABASE_URL || path.join(__dirname, 'data', 'database.sqlite')
-const dbPath = path.join(__dirname, 'data', 'database2.sqlite');
+const dbPath = path.join(__dirname, 'data', 'database3.sqlite');
 
 // Ensure the data directory exists
 const dir = path.dirname(dbPath);

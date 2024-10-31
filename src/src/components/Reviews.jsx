@@ -25,6 +25,22 @@ const Reviews = () => {
     setPicker('');
   };
 
+  const handleDelete = async (id) => {
+    try {
+      await deleteReview(id); // Call the API to delete the review
+      setReviews(reviews.filter((review) => review.id !== id)); // Update state to remove the deleted review
+    } catch (error) {
+      console.error("Error deleting review:", error);
+    }
+  };
+
+  // Calculate the count of each unique picker
+  const pickerCounts = reviews.reduce((acc, review) => {
+    const picker = review.picker || '???';
+    acc[picker] = (acc[picker] || 0) + 1;
+    return acc;
+  }, {});
+
   return (
     <div>
       <h1>The Movie Picker Game!</h1>
@@ -51,16 +67,58 @@ const Reviews = () => {
         <button type="submit">Add</button>
       </form>
 
-      <div style={{ width: '500px', height: '500px', overflowY: 'scroll', border: '1px solid black', marginTop: '20px' }}>
-        <ul style={{ display: 'grid', gap: '10px', padding: 0 }}>
-          {reviews.map((review) => (
-            <li key={review.id} style={{borderTop: "2px solid black", padding: '10px'}}>
-              <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
-              <p>{review.picker ? review.picker : "???"} Picked It</p>
-              <p>{review.content}</p>
-            </li>
+      {/* Picker counts display */}
+      <div style={{ marginTop: '20px' }}>
+        <h2>Picker Counts</h2>
+        <ul>
+          {Object.entries(pickerCounts).map(([picker, count]) => (
+            <li key={picker}>{picker}: {count}</li>
           ))}
         </ul>
+      </div>
+
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: 'repeat(auto-fill, 450px)', 
+        gridAutoRows: '250px', 
+        gap: "6px",
+        width: '100%', 
+        overflowY: 'auto', 
+        margin: "2px", 
+        padding: "0px", 
+      }}>
+        {reviews.map((review) => (
+          <div 
+            key={review.id}
+            style={{
+              position: "relative",
+              padding: '10px', 
+              margin: '6px',
+              backgroundColor: "#101",
+              border: '1px solid black', 
+              borderRadius: "20px" 
+            }}
+          >
+            <button 
+              onClick={() => handleDelete(review.id)}
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "10px",
+                background: "transparent",
+                border: "none",
+                color: "red",
+                fontSize: "16px",
+                cursor: "pointer"
+              }}
+            >
+              ×
+            </button>
+            <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
+            <p style={{color: "green"}}>{review.picker ? review.picker : "???"} Picked It</p>
+            <p>{review.content}</p>
+          </div>
+        ))}
       </div>
 
     </div>
