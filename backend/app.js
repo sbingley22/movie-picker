@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 const cors = require('cors')
 const db = require('./database')
+require('./populateDB.js')
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
