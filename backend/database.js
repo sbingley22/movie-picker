@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const fs = require('fs');
 
 // Create a new database file if it doesn't exist
 //const dbPath = path.join(__dirname, 'database.sqlite');
