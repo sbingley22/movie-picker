@@ -11,12 +11,6 @@ const dbPath = path.join(__dirname, '../data', 'database3.sqlite');
 
 // Route to rerun populate database
 router.get('/repopulatedatabase', (req, res) => {
-  // Ensure the database file exists after deletion
-  const dbPath = path.join(__dirname, '../data', 'database3.sqlite');
-  if (!fs.existsSync(dbPath)) {
-    console.log('Database does not exist, creating new database...');
-  }
-
   try {
     populateDB(); // Call the function to populate the database
     res.status(200).json({ message: 'Database repopulated successfully.' });

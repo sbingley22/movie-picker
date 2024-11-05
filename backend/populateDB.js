@@ -2,20 +2,21 @@
 const fs = require('fs');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
-
-// Path to the database file
-const dbPath = path.join(__dirname, 'data', 'database3.sqlite');
-
-// Create or open the database
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Error opening database ' + err.message);
-  } else {
-    console.log('Connected to the SQLite database.');
-  }
-});
+const bcrypt = require('bcrypt')
 
 const populateDB = () => {
+  // Path to the database file
+  const dbPath = path.join(__dirname, 'data', 'database3.sqlite');
+
+  // Create or open the database
+  const db = new sqlite3.Database(dbPath, (err) => {
+    if (err) {
+      console.error('Error opening database ' + err.message);
+    } else {
+      console.log('Connected to the SQLite database.');
+    }
+  });
+
   db.serialize(() => {
     // Check if the reviews table exists, if not create it
     db.run(`CREATE TABLE IF NOT EXISTS reviews (
@@ -62,9 +63,11 @@ const populateDB = () => {
       } else {
         console.log('Users table created or already exists.');
 
-        // Insert default admin user if it doesn't already exist
+        
+        // Hash and insert the admin password
+        const hashedPassword = await bcrypt.hash("password", 10);
         const insertAdmin = `INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)`;
-        db.run(insertAdmin, ["admin", ""], (err) => {
+        db.run(insertAdmin, ["admin", hashedPassword], (err) => {
           if (err) {
             console.error('Error inserting default admin user: ' + err.message);
           } else {

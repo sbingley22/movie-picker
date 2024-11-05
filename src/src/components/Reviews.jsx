@@ -68,7 +68,14 @@ const Reviews = ({ isAdmin }) => {
       </form>
 
       {/* Picker counts display */}
-      <div style={{ marginTop: '20px' }}>
+      <div 
+        style={{ 
+          marginTop: '20px',
+          border: "2px solid black",
+          borderRadius: "10px",
+          backgroundColor: "#141"
+        }}
+      >
         <h2>Picker Counts</h2>
         <div
           style={{
@@ -125,7 +132,7 @@ const Reviews = ({ isAdmin }) => {
               ×
             </button>}
             <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
-            <p style={{color: "green"}}>{review.picker ? review.picker : "???"} Picked It</p>
+            <p style={{color: "#1C1"}}>{review.picker ? review.picker : "???"} Picked It</p>
             <p>{review.content}</p>
           </div>
         ))}
