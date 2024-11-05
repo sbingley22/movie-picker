@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 //const API_URL = 'http://localhost:3000/reviews'
-const API_URL = 'https://movie-picker-r3fn.onrender.com/reviews'
+const API_URL = 'https://movie-picker-r3fn.onrender.com'
 
 export const getReviews = async () => {
-  const response = await axios.get(API_URL);
+  const response = await axios.get(`${API_URL}/reviews`);
   return response.data;
 };
 
 export const addReview = async (title, content, picker) => {
-  const response = await axios.post(API_URL, { title, content, picker });
+  const response = await axios.post(`${API_URL}/reviews`, { title, content, picker });
   return response.data;
 };
 
