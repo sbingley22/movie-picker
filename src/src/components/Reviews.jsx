@@ -36,7 +36,7 @@ const Reviews = ({ isAdmin }) => {
 
   // Calculate the count of each unique picker
   const pickerCounts = reviews.reduce((acc, review) => {
-    const picker = review.picker || '???';
+    const picker = review.picker.toLowerCase() || '???';
     acc[picker] = (acc[picker] || 0) + 1;
     return acc;
   }, {});
@@ -44,7 +44,14 @@ const Reviews = ({ isAdmin }) => {
   return (
     <div>
       <h1>The Movie Picker Game!</h1>
-      <form onSubmit={handleSubmit} style={{display: "grid", gridTemplateColumns: "2fr 2fr 6fr 1fr", minWidth: "80vw"}}>
+      <form 
+        onSubmit={handleSubmit} 
+        style={{
+          display: "grid", 
+          gridTemplateColumns: "2fr 2fr 6fr 1fr", 
+          minWidth: "80vw",
+          marginTop: "40px",
+        }}>
         <input
           type="text"
           value={title}
@@ -70,13 +77,18 @@ const Reviews = ({ isAdmin }) => {
       {/* Picker counts display */}
       <div 
         style={{ 
-          marginTop: '20px',
+          marginTop: '40px',
           border: "2px solid black",
           borderRadius: "10px",
           backgroundColor: "#141"
         }}
       >
-        <h2>Picker Counts</h2>
+        <h2
+          style={{
+            //borderBottom: "2px solid black",
+            margin: "auto",
+          }}
+        >Picker Counts:</h2>
         <div
           style={{
             display: "grid",
@@ -89,7 +101,7 @@ const Reviews = ({ isAdmin }) => {
               style={{
                 fontSize: "22px",
               }}
-            >{picker}: {count}</p>
+            >{picker.toUpperCase()}: {count}</p>
           ))}
         </div>
       </div>
@@ -98,10 +110,12 @@ const Reviews = ({ isAdmin }) => {
         display: "grid", 
         gridTemplateColumns: 'repeat(auto-fill, 450px)', 
         gridAutoRows: '250px', 
+        justifyContent: "space-between",
         gap: "6px",
         width: '100%', 
         overflowY: 'auto', 
         margin: "2px", 
+        marginTop: "40px",
         padding: "0px", 
       }}>
         {reviews.map((review) => (
@@ -113,7 +127,8 @@ const Reviews = ({ isAdmin }) => {
               margin: '6px',
               backgroundColor: "#333",
               border: '2px solid #101', 
-              borderRadius: "20px" 
+              borderRadius: "20px",
+              fontSize: "20px"
             }}
           >
             {isAdmin && <button 
@@ -131,9 +146,15 @@ const Reviews = ({ isAdmin }) => {
             >
               ×
             </button>}
-            <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
-            <p style={{color: "#1C1"}}>{review.picker ? review.picker : "???"} Picked It</p>
-            <p>{review.content}</p>
+            <h2 
+              style={{padding: 0, margin: 0}}
+            >{review.title}</h2>
+            <p 
+              style={{color: "#1C1", padding: 0, margin: 0}}
+            >{review.picker ? review.picker : "???"} Picked It</p>
+            <p 
+              style={{color: "#DEB", padding: 0, margin: 0}}
+            >{review.content}</p>
           </div>
         ))}
       </div>
