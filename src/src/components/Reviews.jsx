@@ -70,11 +70,21 @@ const Reviews = ({ isAdmin }) => {
       {/* Picker counts display */}
       <div style={{ marginTop: '20px' }}>
         <h2>Picker Counts</h2>
-        <ul>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
+          }}
+        >
           {Object.entries(pickerCounts).map(([picker, count]) => (
-            <li key={picker}>{picker}: {count}</li>
+            <p 
+              key={picker}
+              style={{
+                fontSize: "22px",
+              }}
+            >{picker}: {count}</p>
           ))}
-        </ul>
+        </div>
       </div>
 
       <div style={{ 
@@ -94,8 +104,8 @@ const Reviews = ({ isAdmin }) => {
               position: "relative",
               padding: '10px', 
               margin: '6px',
-              backgroundColor: "#101",
-              border: '1px solid black', 
+              backgroundColor: "#333",
+              border: '2px solid #101', 
               borderRadius: "20px" 
             }}
           >
