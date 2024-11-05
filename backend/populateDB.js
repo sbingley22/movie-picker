@@ -65,7 +65,7 @@ const populateDB = () => {
 
         
         // Hash and insert the admin password
-        const hashedPassword = await bcrypt.hash("password", 10);
+        const hashedPassword = bcrypt.hashSync("password", 10);
         const insertAdmin = `INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)`;
         db.run(insertAdmin, ["admin", hashedPassword], (err) => {
           if (err) {
