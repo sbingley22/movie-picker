@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getReviews, addReview, deleteReview } from '../api';
 
-const Reviews = () => {
+const Reviews = ({ isAdmin }) => {
   const [reviews, setReviews] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -99,7 +99,7 @@ const Reviews = () => {
               borderRadius: "20px" 
             }}
           >
-            <button 
+            {isAdmin && <button 
               onClick={() => handleDelete(review.id)}
               style={{
                 position: "absolute",
@@ -113,7 +113,7 @@ const Reviews = () => {
               }}
             >
               ×
-            </button>
+            </button>}
             <h2 style={{padding: 0, margin: 0}}>{review.title}</h2>
             <p style={{color: "green"}}>{review.picker ? review.picker : "???"} Picked It</p>
             <p>{review.content}</p>
