@@ -3,9 +3,16 @@ const router = express.Router();
 const db = require('../database');
 const fs = require('fs');
 const path = require('path');
+const populateDB = require('./populateDB.js')
 
 // Path to the database file
 const dbPath = path.join(__dirname, '../data', 'database3.sqlite');
+
+// Route to rerun populate database.
+router.get('/repopulatedatabase', (req, res) => {
+  populateDB()
+  return res.send('Repopulating Database')
+})
 
 // Route to delete the entire database file
 router.get('/deletedatabase', (req, res) => {

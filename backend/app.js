@@ -3,7 +3,8 @@ var express = require('express');
 const cors = require('cors')
 const bcrypt = require('bcrypt')
 const db = require('./database')
-require('./populateDB.js')
+const populateDB = require('./populateDB.js')
+populateDB()
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
