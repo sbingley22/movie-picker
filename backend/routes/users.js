@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const db = require('../database')
+const bcrypt = require('bcrypt')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
