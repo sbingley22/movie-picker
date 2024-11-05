@@ -64,7 +64,7 @@ const populateDB = () => {
 
         // Insert default admin user if it doesn't already exist
         const insertAdmin = `INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)`;
-        db.run(insertAdmin, ["admin", "password"], (err) => {
+        db.run(insertAdmin, ["admin", ""], (err) => {
           if (err) {
             console.error('Error inserting default admin user: ' + err.message);
           } else {
