@@ -15,7 +15,7 @@ export const addReview = async (title, content, picker) => {
 
 // Delete a review by ID
 export const deleteReview = async (id) => {
-  const response = await axios.delete(`${API_URL}/${id}`);
+  const response = await axios.delete(`${API_URL}/reviews/${id}`);
   return response.data; // Optionally return the response if needed
 };
 
