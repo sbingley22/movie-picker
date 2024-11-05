@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 const cors = require('cors')
+const bcrypt = require('bcrypt')
 const db = require('./database')
 require('./populateDB.js')
 
@@ -11,6 +12,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var reviewsRouter = require('./routes/reviews');
+const adminRouter = require('./routes/admin')
 
 var app = express()
 
@@ -37,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/reviews', reviewsRouter);
+app.use('/admin', adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
