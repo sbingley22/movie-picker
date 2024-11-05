@@ -30,10 +30,32 @@ db.serialize(() => {
             console.error('Error inserting default entry: ' + err.message);
           } else {
             console.log(`Inserted ${this.changes} default entry: ${review[0]}`);
+            // Insert default admin user if it doesn't already exist
+            const insertAdmin = `INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)`;
+            db.run(insertAdmin, ["admin", "password"], (err) => {
+              if (err) {
+                console.error('Error inserting default admin user: ' + err.message);
+              } else {
+                console.log('Default admin account created with username: "admin" and password: "password"');
+              }
+            });
           }
         });
       });
     }
   });
+
+  db.run(`CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+  )`, (err) => {
+    if (err) {
+      console.error('Error creating users table: ' + err.message);
+    } else {
+      console.log('Users table created or already exists.');
+    }
+  });
+
 });
 

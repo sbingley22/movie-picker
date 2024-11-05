@@ -18,3 +18,14 @@ export const deleteReview = async (id) => {
   const response = await axios.delete(`${API_URL}/${id}`);
   return response.data; // Optionally return the response if needed
 };
+
+// Auth Endpoints
+export const login = async (username, password) => {
+  const response = await axios.post(`${API_URL}/users/login`, { username, password });
+  return response.data;
+};
+
+export const signUp = async (username, password) => {
+  const response = await axios.post(`${API_URL}/users/register`, { username, password });
+  return response.data;
+};
