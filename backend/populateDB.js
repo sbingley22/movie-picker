@@ -32,9 +32,15 @@ const populateDB = () => {
         console.log('Reviews table created or already exists.');
 
         const defaultReviews = [
+          ["Rosemarys Baby", "Mum really liked it, Lee didn't at all, dad had seen it before. I thought it was okay but too slow, though it is an old movie.", "Mum"],
           ["His House", "Mum wasn't too fussed [5], Sean thought it was ok, Silent Hill vibe to it [7], Lee really liked it [9]", "Mum"],
           ["Omen 2", "Parents really liked it, Sean and Lee thought it was just ok, a bit like a prerunner to Final Destination", "Mum"],
           ["Omen", "Parents really liked it, Sean and Lee thought it was pretty good", "Dad"],
+          ["Unleasehd", "Everyone thought it was shit. Some weird story about a mentally challenged slave Jet Li. Plot rubbish, action boring.", "Sean"],
+          ["Venom", "We all quite liked it. Was funny and mildly engaging. Tom Hardy played a good role. 7/10", "Lee"],
+          ["The Ballad of Buster Scruggs", "Pretty good. Like 6 movies in one, all slightly depressing though but definitely captivating. We all enjoyed it.", "Lee"],
+          ["Top Gun Maverick", "A good film. A bit of nastalgia and some fun fighter plane scenes. Everyone liked it.", "Lee"],
+          ["Hot Fuzz", "Great film, very funny, engaging plot. A close second to Shaun of the Dead.", "Everyone"],
         ];
 
         // Insert default entries if the table is empty

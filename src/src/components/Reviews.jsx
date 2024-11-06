@@ -48,7 +48,7 @@ const Reviews = ({ isAdmin }) => {
         onSubmit={handleSubmit} 
         style={{
           display: "grid", 
-          gridTemplateColumns: "2fr 2fr 6fr 1fr", 
+          //gridTemplateRows: "2fr 2fr 6fr 1fr", 
           minWidth: "80vw",
           marginTop: "40px",
         }}>
